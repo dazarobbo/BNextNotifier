@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			body{
+				background-color: black;
+				color:white;
+				font-family: arial;
+			}
+			
+			li{
+				margin-bottom: 10px;
+			}
+			
+			a,
+			a:link,
+			a:visited,
+			a:active{
+				color:#6FB3D3;
+				text-decoration: none;
+			}
+		</style>
+		<script type="text/javascript" src="../scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="../scripts/options.js"></script>
+		<title>BNext Notifications - Options</title>
+	</head>
+	<body>
+		
+		<h1>BNext Notifications</h1>
+		
+		<p>Version: <span id="appVersion"></span></p>
+		
+		<p>
+			<a target="_blank" href="https://www.bungie.net/en/Groups/Post?groupId=39966&id=63414563&path=1">What do these options mean?</a>
+		</p>
+		
+		<ul id="optionsList">
+			<li>
+				Currently logged in to Bungie.net as: <span id="loginDetails"><i>loading...</i></span>
+			</li>
+			
+			<li>
+				Network timeout: <select id="lstNetworkTimeout"></select> milliseconds
+			</li>
+			
+			<li>
+				Check user status: <input type="checkbox" id="chkCheckUserStatus">
+			</li>
+			<li>
+				Check global notifications: <input type="checkbox" id="chkCheckGlobalNotifications">
+			</li>
+			<li>
+				Check banhammer status: <input type="checkbox" id="chkCheckBanhammerStatus">
+			</li>
+			
+			<li>
+				User status polling every <select id="lstUserStatusInterval"></select> minute(s)
+			</li>
+			<li>
+				Global notification polling every <select id="lstGlobalNotificationsInterval"></select> minute(s)
+			</li>
+			<li>
+				Banhammer polling every <select id="lstBanhammerStatusInterval"></select> minute(s)
+			</li>
+			
+			<li>
+				Display desktop notifications: <input type="checkbox" id="chkDisplayNotifications">
+			</li>
+			
+		</ul>
+		
+		<input id="btnSubmit" type="submit" value="Save"> <span id="message" style="color:red;"></span>
+		
+		<p>Problems? <a target="_blank" href="https://www.bungie.net/en/Clan/Post/39966/62466116/0/0">Post here</a>.</p>
+	
+	</body>
+</html>

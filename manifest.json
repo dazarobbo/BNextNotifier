@@ -1,0 +1,34 @@
+{
+	"manifest_version": 2,
+	"name": "BNextNotifier",
+	"description": "Displays notifications for bungie.net",
+	"version": "1.0",
+	"permissions": [
+		"*://*.bungie.net/*",
+		"cookies",
+		"notifications",
+		"tabs",
+		"tts",
+		"webRequest"
+	],
+	"author": "dazarobbo",
+	"background": {
+		"scripts": [
+			"scripts/base.js",
+			"scripts/BungieNet.js",
+			"scripts/jquery.min.js",
+			"scripts/extensions.js",
+			"scripts/background.js"
+		]
+	},
+	"browser_action": {
+		"default_icon": "resources/icon.png",
+		"default_popup": "pages/popup.html"
+	},
+	"homepage_url": "https://www.bungie.net/en/Clan/Post/39966/62466116/0/0",
+	"incognito": "split",
+	"offline_enabled": false,
+	"options_page": "pages/options.html",
+	"short_name": "BNextNotify",
+	"minimum_chrome_version": "22.0.0.0"
+}
