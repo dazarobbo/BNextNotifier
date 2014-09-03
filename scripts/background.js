@@ -491,7 +491,7 @@ Object.defineProperties(Application.Notifications, {
 					type: "basic",
 					title: "New Notifications",
 					message: "You have " + count + " new notification" + (count != 1 ? "s" : ""),
-					iconUrl: chrome.extension.getURL("default_avatar.gif")
+					iconUrl: chrome.extension.getURL("resources/default_avatar.gif")
 				}, function(){});
 			}
 		
@@ -510,7 +510,7 @@ Object.defineProperties(Application.Notifications, {
 					type: "basic",
 					title: "Error",
 					message: text,
-					iconUrl: chrome.extension.getURL("default_avatar.gif")
+					iconUrl: chrome.extension.getURL("resources/default_avatar.gif")
 				}, function(){});
 				
 			}
