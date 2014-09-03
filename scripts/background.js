@@ -425,7 +425,7 @@ Object.defineProperties(Application, {
 	GetAndStoreUser: {
 		value: function(){
 			
-			Bungie.GetUser(function(r){
+			BungieNet.Platform.GetUser(function(r){
 				Settings.User = r;
 				Application.TitleText = "Signed in as: " + r.user.displayName + " (" + r.user.uniqueName + ")";
 			});
@@ -484,7 +484,7 @@ Object.defineProperties(Application.Notifications, {
 		value: function(count){
 		
 			if(count === null){
-				chrome.notifications.clear("NEW_NOTIFICATION_ID", function(){});
+				chrome.notifications.clear("NEW_NOTIFICATION_ID", Function.NOP);
 			}
 			else{
 				chrome.notifications.create("NEW_NOTIFICATION_ID", {
@@ -492,7 +492,7 @@ Object.defineProperties(Application.Notifications, {
 					title: "New Notifications",
 					message: "You have " + count + " new notification" + (count != 1 ? "s" : ""),
 					iconUrl: chrome.extension.getURL("resources/default_avatar.gif")
-				}, function(){});
+				}, Function.NOP);
 			}
 		
 		}
@@ -502,17 +502,15 @@ Object.defineProperties(Application.Notifications, {
 		value: function(text){
 			
 			if(text === null){
-				chrome.notifications.clear("ERROR_NOTIFICATION_ID", function(){});
+				chrome.notifications.clear("ERROR_NOTIFICATION_ID", Function.NOP);
 			}
 			else{
-			
 				chrome.notifications.create("ERROR_NOTIFICATION_ID", {
 					type: "basic",
 					title: "Error",
 					message: text,
 					iconUrl: chrome.extension.getURL("resources/default_avatar.gif")
-				}, function(){});
-				
+				}, Function.NOP);
 			}
 			
 		}
