@@ -108,7 +108,7 @@ function DisplayNotifications(){
 	
 			var item;
 			var user;
-
+			
 			r.notifications.forEach(function(n){
 				
 				user = n.memberInitiated != undefined ? n.memberInitiated : null;
