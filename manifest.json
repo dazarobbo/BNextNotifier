@@ -7,9 +7,7 @@
 		"*://*.bungie.net/*",
 		"cookies",
 		"notifications",
-		"tabs",
-		"tts",
-		"webRequest"
+		"tabs"
 	],
 	"author": "dazarobbo",
 	"background": {
