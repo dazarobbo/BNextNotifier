@@ -299,7 +299,7 @@ Object.defineProperties(Settings, {
 				? localStorage[Settings.ConstKeys.LastNotificationCount]
 				: null;
 			
-			if((ts + "").match(/^-?\d+$/) !== null){
+			if(ts.toString().match(/^-?\d+$/) !== null){
 				ts = parseInt(ts, 10);
 			}
 			
@@ -362,6 +362,14 @@ Object.defineProperties(Settings.ConstKeys, {
 	
 	LastNotificationCount: {
 		value: "LastNotificationCount"
+	},
+	
+	NewNotificationId: {
+		value: "NEW_NOTIFICATION_ID"
+	},
+	
+	ErrorNotificationId: {
+		value: "ERROR_NOTIFICATION_ID"
 	}
 
 });
@@ -381,7 +389,6 @@ Object.defineProperties(Application, {
 		value: function(){
 		
 			Application.TitleText = Settings.DEFAULT_ICON_TITLE;
-			//chrome.browserAction.setTitle({title: Settings.IconTitle});
 			chrome.browserAction.setBadgeBackgroundColor({color: [255, 0, 0, 255]});
 			chrome.notifications.onClicked.addListener(Application.NotificationSubscription.ChromeListener);
 			
@@ -413,12 +420,10 @@ Object.defineProperties(Application, {
 	
 	GetAndStoreUser: {
 		value: function(){
-			
 			BungieNet.Platform.GetUser(function(r){
 				Settings.User = r;
 				Application.TitleText = "Signed in as: " + r.user.displayName + " (" + r.user.uniqueName + ")";
 			});
-
 		}
 	},
 	
@@ -436,7 +441,7 @@ Object.defineProperties(Application, { NotificationCounts: { value: { } } });
 Object.defineProperties(Application.NotificationCounts, {
 	
 	_Map: {
-		value: { }, //Properties can be added on the fly
+		value: { },
 		writable: true
 	},
 	
@@ -473,10 +478,10 @@ Object.defineProperties(Application.Notifications, {
 		value: function(count){
 		
 			if(count === null){
-				chrome.notifications.clear("NEW_NOTIFICATION_ID", Function.NOP);
+				chrome.notifications.clear(Settings.ConstKeys.NewNotificationId, Function.NOP);
 			}
 			else{
-				chrome.notifications.create("NEW_NOTIFICATION_ID", {
+				chrome.notifications.create(Settings.ConstKeys.NewNotificationId, {
 					type: "basic",
 					title: "New Notifications",
 					message: "You have " + count + " new notification" + (count != 1 ? "s" : ""),
@@ -491,10 +496,10 @@ Object.defineProperties(Application.Notifications, {
 		value: function(text){
 			
 			if(text === null){
-				chrome.notifications.clear("ERROR_NOTIFICATION_ID", Function.NOP);
+				chrome.notifications.clear(Settings.ConstKeys.ErrorNotificationId, Function.NOP);
 			}
 			else{
-				chrome.notifications.create("ERROR_NOTIFICATION_ID", {
+				chrome.notifications.create(Settings.ConstKeys.ErrorNotificationId, {
 					type: "basic",
 					title: "Error",
 					message: text,
