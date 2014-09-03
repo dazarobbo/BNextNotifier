@@ -56,7 +56,7 @@ Object.defineProperties(BungieNet, {
 			else{
 				return path;
 			}
-						
+	
 		}
 	}
 	
@@ -229,6 +229,9 @@ Object.defineProperties(BungieNet.Platform, {
 			
 			var o = null;
 			
+			//Keep as is
+			//If another error occurs inside success or error but inside
+			//try{}, it eats it
 			try{
 				o = JSON.parse(str);
 			}
@@ -439,15 +442,3 @@ Object.defineProperties(BungieNet.Platform, {
 	}
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
