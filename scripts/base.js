@@ -1,5 +1,6 @@
-//Base
+//base.js
 
+//Int32
 var Int32 = function(){ };
 Object.defineProperties(Int32, {
 	
@@ -13,4 +14,5 @@ Object.defineProperties(Int32, {
 	
 });
 
+//Function
 Function.NOP = function(){ };
