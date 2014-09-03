@@ -30,20 +30,26 @@ Object.defineProperties(BungieNet, {
 	},
 	
 	MakeProfileLink: {
-		value: function(memberId){
-			return BungieNet.Base + "/en/Profile/254/" + memberId;
+		value: function(memberId, callback){
+			BungieNet.CurrentUser.GetLocale(function(locale){
+				callback(BungieNet.Base + "/" + locale + "/Profile/254/" + memberId;
+			});
 		}
 	},
 	
 	MakeGroupLink: {
-		value: function(groupId){
-			return BungieNet.Base + "/en/Clan/" + groupId;
+		value: function(groupId, callback){
+			BungieNet.CurrentUser.GetLocale(function(locale){
+				callback(BungieNet.Base + "/" + locale + "/Clan/" + groupId);
+			});
 		}
 	},
 	
 	MakePostLink: {
-		value: function(postId){
-			return BungieNet.Base + "/en/Forum/Post/" + postId + "/0/0";
+		value: function(postId, callback){
+			BungieNet.CurrentUser.GetLocale(function(locale){
+				callback(BungieNet.Base + "/" + locale + "/Forum/Post/" + postId + "/0/0");
+			});
 		}
 	},
 	
