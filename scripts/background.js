@@ -321,58 +321,47 @@ Object.defineProperties(Settings, { ConstKeys: { value: { } } });
 Object.defineProperties(Settings.ConstKeys, {
 	
 	BungieNetUser: {
-		value: "BungieNetUser",
-		writable: true
+		value: "BungieNetUser"
 	},
 	
 	NetworkTimeout: {
-		value: "NetworkTimeout",
-		writable: true
+		value: "NetworkTimeout"
 	},
 	
 	CheckUserStatus: {
-		value: "CheckUserStatus",
-		writable: true
+		value: "CheckUserStatus"
 	},
 	
 	CheckGlobalNotificationsStatus: {
-		value: "CheckGlobalNotificationsStatus",
-		writable: true
+		value: "CheckGlobalNotificationsStatus"
 	},
 	
 	CheckBanhammerStatus: {
-		value: "CheckBanhammerStatus",
-		writable: true
+		value: "CheckBanhammerStatus"
 	},
 	
 	UserStatusPollingInterval: {
-		value: "UserStatusPollingInterval",
-		writable: true
+		value: "UserStatusPollingInterval"
 	},
 	
 	GlobalNotificationsPollingInterval: {
-		value: "GlobalNotificationsPollingInterval",
-		writable: true
+		value: "GlobalNotificationsPollingInterval"
 	},
 	
 	BanhammerPollingInterval: {
-		value: "BanhammerPollingInterval",
-		writable: true
+		value: "BanhammerPollingInterval"
 	},
 	
 	DisplayDesktopNotifications: {
-		value: "DisplayDesktopNotifications",
-		writable: true
+		value: "DisplayDesktopNotifications"
 	},
 	
 	LastNotificationCheck: {
-		value: "LastNotificationCheck",
-		writable: true
+		value: "LastNotificationCheck"
 	},
 	
 	LastNotificationCount: {
-		value: "LastNotificationCount",
-		writable: true
+		value: "LastNotificationCount"
 	}
 
 });
