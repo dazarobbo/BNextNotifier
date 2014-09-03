@@ -463,25 +463,42 @@ function DisplayMessages(){
 						$("<p>").html((function(){
 						
 							var str = "";
+							var owner;
 						
-							pm.participants
-								.filter(function(u){ return u.membershipId != Settings.User.user.membershipId; })
-								.sort(function(u1, u2){ return u1.membershipId === pm.detail.starter ? -1 : 1; })
-								.forEach(function(u, i, arr){
-									
-									var theUser = r.users[u.membershipId];
-									
-									str += $("<a>").text(theUser.displayName).attr({
-										href: BungieNet.MakeProfileLink(theUser.membershipId),
-										target: "_blank"
-									})[0].outerHTML;
-									
-									if(i !== arr.length - 1){
-										str += "; ";
-									}
-									
-								});
+							if(pm.detail.ownerEntityType === 0){
+								//Message
+							
+								pm.participants
+									.filter(function(u){ return u.membershipId != Settings.User.user.membershipId; })
+									.sort(function(u1, u2){ return u1.membershipId === pm.detail.starter ? -1 : 1; })
+									.forEach(function(u, i, arr){
+										
+										owner = r.users[u.membershipId];
+										
+										str += $("<a>").text(owner.displayName).attr({
+											href: BungieNet.MakeProfileLink(owner.membershipId),
+											target: "_blank"
+										})[0].outerHTML;
+										
+										if(i !== arr.length - 1){
+											str += "; ";
+										}
+										
+									});
 								
+							}
+							else if(pm.detail.ownerEntityType === 2){
+								//Group chat
+							
+								owner = r.groups[pm.detail.ownerEntityId];
+								
+								str += $("<a>").text(owner.name).attr({
+									href: BungieNet.MakeGroupLink(owner.groupId),
+									target: "_blank"
+								})[0].outerHTML;
+								
+							}
+							
 							return str;
 							
 						})()),
