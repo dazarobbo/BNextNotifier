@@ -626,9 +626,6 @@ function DisplaySearch(){
 						$("<a>").append(
 							$("<img>").attr({
 								src: BungieNet.FixImagePath(user.profilePicturePath),
-								//src: (function(){
-								//	return user.profilePicturePath[0] === "/" ? (BungieNet.Protocol + "://" + BungieNet.Host + user.profilePicturePath) : user.profilePicturePath;
-								//})(),
 								title: user.displayName
 							})
 						).attr({
