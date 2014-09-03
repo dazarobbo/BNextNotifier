@@ -96,7 +96,7 @@ Object.defineProperties(Settings, {
 	
 	NetworkTimeout: {
 
-		//Stored in milliseconds
+		//int, milliseconds
 
 		get: function(){
 			return(
@@ -114,7 +114,7 @@ Object.defineProperties(Settings, {
 	
 	CheckUserStatus: {
 	
-		//boolean
+		//bool
 		
 		get: function(){
 			return(
@@ -133,7 +133,7 @@ Object.defineProperties(Settings, {
 	
 	CheckGlobalNotificationsStatus: {
 	
-		//boolean
+		//bool
 		
 		get: function(){
 			return(
@@ -152,7 +152,7 @@ Object.defineProperties(Settings, {
 	
 	CheckBanhammerStatus: {
 	
-		//boolean
+		//bool
 		
 		get: function(){
 			return(
@@ -262,7 +262,9 @@ Object.defineProperties(Settings, {
 			
 			var u = Settings.User;
 			
-			if(u === null) return null;
+			if(u === null){
+				return null;
+			}
 		
 			//http://static01.bungie.net/Platform/Scripts/BnetPlatform.Client.min.js
 			//Globals.AclEnum.BNextForumNinja === 1
