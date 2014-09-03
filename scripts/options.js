@@ -46,7 +46,7 @@ $(document).ready(function(){
 			Settings.User = r;
 			loginDetails.empty().append(
 				$("<a>").text(r.user.displayName + " (" + r.user.uniqueName + ")").attr({
-					href: BungieNet.Protocol + "://" + BungieNet.Host + "/en/view/profile/index#!page=index&mid=" + r.user.membershipId,
+					href: BungieNet.MakeProfileLink(r.user.membershipId),
 					target: "_blank"
 				})
 			);
@@ -60,7 +60,7 @@ $(document).ready(function(){
 	);
 	
 	//Network timeout
-	for(var i=Options.MIN_NETWORK_TIMEOUT_MS; i<=Options.MAX_NETWORK_TIMEOUT_MS; i+=Options.NETWORK_TIMEOUT_STEP_MS){
+	for(var i = Options.MIN_NETWORK_TIMEOUT_MS; i <= Options.MAX_NETWORK_TIMEOUT_MS; i += Options.NETWORK_TIMEOUT_STEP_MS){
 		
 		opt = $("<option>").text(i).val(i);
 	
@@ -97,7 +97,7 @@ $(document).ready(function(){
 	}
 	
 	//User status polling interval	
-	for(var i=Options.MIN_USER_STATUS_POLLING_MINS; i<=Options.MAX_USER_STATUS_POLLING_MINS; i+=Options.USER_STATUS_POLLING_STEP_MINS){
+	for(var i = Options.MIN_USER_STATUS_POLLING_MINS; i <= Options.MAX_USER_STATUS_POLLING_MINS; i += Options.USER_STATUS_POLLING_STEP_MINS){
 		
 		opt = $("<option>").text(i).val(i);
 		
@@ -110,7 +110,7 @@ $(document).ready(function(){
 	}
 	
 	//Global notifications polling interval
-	for(var i=Options.MIN_GLOBAL_NOTIFICATIONS_POLLING_MINS; i<=Options.MAX_GLOBAL_NOTIFICATIONS_POLLING_MINS; i+=Options.GLOBAL_NOTIFICATIONS_POLLING_STEP_MINS){
+	for(var i = Options.MIN_GLOBAL_NOTIFICATIONS_POLLING_MINS; i <= Options.MAX_GLOBAL_NOTIFICATIONS_POLLING_MINS; i += Options.GLOBAL_NOTIFICATIONS_POLLING_STEP_MINS){
 		
 		opt = $("<option>").text(i).val(i);
 		
@@ -123,7 +123,7 @@ $(document).ready(function(){
 	}
 	
 	//Banhammer polling interval
-	for(var i=Options.MIN_BANHAMMER_POLLING_MINS; i<=Options.MAX_BANHAMMER_POLLING_MINS; i+=Options.BANHAMMER_POLLING_STEP_MINS){
+	for(var i = Options.MIN_BANHAMMER_POLLING_MINS; i <= Options.MAX_BANHAMMER_POLLING_MINS; i += Options.BANHAMMER_POLLING_STEP_MINS){
 		
 		opt = $("<option>").text(i).val(i);
 		
