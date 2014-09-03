@@ -32,7 +32,7 @@ Object.defineProperties(BungieNet, {
 	MakeProfileLink: {
 		value: function(memberId, callback){
 			BungieNet.CurrentUser.GetLocale(function(locale){
-				callback(BungieNet.Base + "/" + locale + "/Profile/254/" + memberId;
+				callback(BungieNet.Base + "/" + locale + "/Profile/254/" + memberId);
 			});
 		}
 	},
@@ -150,7 +150,7 @@ Object.defineProperties(BungieNet.CurrentUser, {
 					callback(null);
 				}
 				
-				var arr = cookie.value.match(/&?lc=(.+)(?:$|&)/i);
+				var arr = cookie.value.match(/&?lc=(.{2,}?)(?:$|&)/i);
 				callback(arr[1] ? arr[1] : null);
 				
 			});
@@ -176,6 +176,29 @@ Object.defineProperties(BungieNet.Platform, {
 			RequestTimeout: 5000
 		}
 	},
+	
+	_AddLocaleToUrl: {
+		value: function(url, callback){
+			BungieNet.CurrentUser.GetLocale(function(lc){
+			
+				if(url.indexOf("?") !== -1){
+					//A query string exists
+					
+					if(!/\?.*lc=.{2,}/i){
+						//There is no lc parameter in the query string
+						//so add it
+						callback(url += "&lc=" + lc);
+					}
+					
+				}
+				else{
+					//No query string exists, so add one in
+					callback(url += "?lc=" + lc);
+				}
+				
+			});
+		}
+	},
 
 	_MakeRequest: {
 		value: function(url, method, auth, success, error, postStr){
@@ -192,40 +215,44 @@ Object.defineProperties(BungieNet.Platform, {
 				postStr = null;
 			}
 			
-			var xhr = new XMLHttpRequest();
-			xhr.open(method, url, true);
-			xhr.timeout = BungieNet.Platform._Settings.RequestTimeout;
-			xhr.onreadystatechange = function(){
+			//Add in locale parameter
+			BungieNet.Platform._AddLocaleToUrl(url, function(newUrl){
+			
+				var xhr = new XMLHttpRequest();
+				xhr.open(method, newUrl, true);
+				xhr.timeout = BungieNet.Platform._Settings.RequestTimeout;
+				xhr.onreadystatechange = function(){
+					
+					if(this.readyState === 4){
+						if(this.status === 200){
+							success(this.responseText);
+						}
+						else{
+							error({ Reason: "Network error (HTTP: " + this.status + ")" });
+						}
+					}
+					
+				};
 				
-				if(this.readyState === 4){
-					if(this.status === 200){
-						success(this.responseText);
-					}
-					else{
-						error({ Reason: "Network error (HTTP: " + this.status + ")" });
-					}
+				if(auth){
+					BungieNet.CurrentUser.GetCsrfToken(function(token){
+						
+						if(token === null){
+							error({ Reason: "CSRF token not set" });
+						}
+						else{
+							xhr.withCredentials = true;
+							xhr.setRequestHeader("x-csrf", token);
+							xhr.send( postStr !== null ? postStr : void(0) );
+						}
+						
+					});
 				}
-				
-			};
+				else{
+					xhr.send( postStr !== null ? postStr : void(0) );
+				}
 			
-			if(auth){
-				BungieNet.CurrentUser.GetCsrfToken(function(token){
-					
-					if(token === null){
-						error({ Reason: "CSRF token not set" });
-					}
-					else{
-						xhr.withCredentials = true;
-						xhr.setRequestHeader("x-csrf", token);
-						xhr.send( postStr !== null ? postStr : void(0) );
-					}
-					
-				});
-			}
-			else{
-				xhr.send( postStr !== null ? postStr : void(0) );
-			}
-			
+			});			
 		
 		}
 	},
