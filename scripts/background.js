@@ -568,6 +568,51 @@ Object.defineProperties(Application.Polling, {
 			Banhammer: null,
 			UserStatus: null
 		}
+	},
+	
+	PollNotificationCounts: {
+		set: function(v){
+			
+			if(Application.Polling.Ids.NotificationCounts !== null){
+				window.clearTimeout(Application.Polling.Ids.NotificationCounts);
+				Application.Polling.Ids.NotificationCounts = null;
+			}
+			
+			if(v === true){
+				Application.Polling.Functions.NotificationCounts();
+			}
+			
+		}
+	},
+	
+	PollBanhammer: {
+		set: function(v){
+		
+			if(Application.Polling.Ids.Banhammer !== null){
+				window.clearTimeout(Application.Polling.Ids.Banhammer);
+				Application.Polling.Ids.Banhammer = null;
+			}
+			
+			if(v === true){
+				Application.Polling.Functions.Banhammer();
+			}
+		
+		}
+	},
+	
+	PollUserStatus: {
+		set: function(v){
+		
+			if(Application.Polling.Ids.UserStatus !== null){
+				window.clearTimeout(Application.Polling.Ids.UserStatus);
+				Application.Polling.Ids.UserStatus = null;
+			}
+			
+			if(v === true){
+				Application.Polling.Functions.UserStatus();
+			}
+		
+		}
 	}
 	
 });
@@ -586,7 +631,7 @@ Object.defineProperties(Application.Polling.Functions, {
 				return;
 			}
 		
-			Bungie.GetBanhammerCount(
+			BungieNet.Platform.GetBanhammerCount(
 				function(count){
 					
 					if(count > 0){
@@ -614,7 +659,7 @@ Object.defineProperties(Application.Polling.Functions, {
 	NotificationCounts: {
 		value: function(){
 		
-			Bungie.GetNotificationCounts(
+			BungieNet.Platform.GetNotificationCounts(
 				function(o){
 					
 					Application.NotificationCounts.SetCount("GlobalNotifications", o.notificationCount);
@@ -663,51 +708,6 @@ Object.defineProperties(Application.Polling.Functions, {
 			Application.GetAndStoreUser();
 			console.log("Checking user status again in " + (Settings.UserStatusPollingInterval / 60000) + " minute(s)");
 			Application.Polling.Ids.UserStatus = window.setTimeout(Application.Polling.Functions.UserStatus, Settings.UserStatusPollingInterval);
-		
-		}
-	},
-	
-	PollNotificationCounts: {
-		set: function(v){
-			
-			if(Application.Polling.Ids.NotificationCounts !== null){
-				window.clearTimeout(Application.Polling.Ids.NotificationCounts);
-				Application.Polling.Ids.NotificationCounts = null;
-			}
-			
-			if(v === true){
-				Application.Polling.Functions.NotificationCounts();
-			}
-			
-		}
-	},
-	
-	PollBanhammer: {
-		set: function(v){
-		
-			if(Application.Polling.Ids.Banhammer !== null){
-				window.clearTimeout(Application.Polling.Ids.Banhammer);
-				Application.Polling.Ids.Banhammer = null;
-			}
-			
-			if(v === true){
-				Application.Polling.Functions.Banhammer();
-			}
-		
-		}
-	},
-	
-	PollUserStatus: {
-		set: function(v){
-		
-			if(Application.Polling.Ids.UserStatus !== null){
-				window.clearTimeout(Application.Polling.Ids.UserStatus);
-				Application.Polling.Ids.UserStatus = null;
-			}
-			
-			if(v === true){
-				Application.Polling.Functions.UserStatus();
-			}
 		
 		}
 	}
