@@ -349,16 +349,16 @@ Object.defineProperties(BungieNet.Platform, {
 		}
 	},
 	
-	SendMessage: {
-		value: function(success, error, msg, recipients){
+	SendMessageByConversationId: {
+		value: function(success, error, msg, conversationId){
 		
 			var postData = {
 				body: msg,
-				membersToId: recipients
+				conversationId: conversationId
 			};
-		
+			
 			BungieNet.Platform._MakeRequest(
-				BungieNet.PlatformPath + "/Message/SaveMessageV2/",
+				BungieNet.PlatformPath + "/Message/SaveMessageV3/",
 				"POST",
 				true,
 				function(str){ BungieNet.Platform._ParseJson(str, success, error); },
