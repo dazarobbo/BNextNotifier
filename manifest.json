@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "BNextNotifier",
 	"description": "Displays notifications for bungie.net",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"permissions": [
 		"*://*.bungie.net/*",
 		"cookies",

@@ -253,7 +253,7 @@ Object.defineProperties(BungieNet.Platform, {
 		}
 	},
 	
-	SetPrefernceProxy: {
+	SetPreferenceProxy: {
 		value: function(proxy){
 			BungieNet.Platform._PreferenceProxy = proxy;
 		}
