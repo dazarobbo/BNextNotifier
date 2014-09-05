@@ -397,6 +397,8 @@ Object.defineProperties(Application, {
 			Settings.LastNotificationCount = "null";
 			Settings.LastNotificationCheck = "null";
 			
+			BungieNet.Platform.SetPreferenceProxy(Settings);
+			
 			console.log("Initialised!");
 		
 		}

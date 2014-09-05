@@ -165,10 +165,9 @@ Object.defineProperties(BungieNet.CurrentUser, {
 Object.defineProperties(BungieNet, { Platform: { value: { } } });
 Object.defineProperties(BungieNet.Platform, {
 
-	_Preferences: {
-		value: {
-			RequestTimeout: null
-		}
+	_PreferenceProxy: {
+		value: null,
+		writable: true
 	},
 
 	_MakeRequest: {
@@ -188,7 +187,7 @@ Object.defineProperties(BungieNet.Platform, {
 			
 			var xhr = new XMLHttpRequest();
 			xhr.open(method, url, true);
-			xhr.timeout = BungieNet.Platform._Settings.RequestTimeout;
+			xhr.timeout = BungieNet.Platform._PreferenceProxy.NetworkTimeout;
 			xhr.onreadystatechange = function(){
 				
 				if(this.readyState === 4){
@@ -254,15 +253,9 @@ Object.defineProperties(BungieNet.Platform, {
 		}
 	},
 	
-	SetPrefernces: {
-		value: function(options){
-			
-			for(var opt in options){
-				if(opt in BungieNet.Platform._Preferences){
-					BungieNet.Platform._Preferences[opt] = options[opt];
-				}
-			}
-			
+	SetPrefernceProxy: {
+		value: function(proxy){
+			BungieNet.Platform._PreferenceProxy = proxy;
 		}
 	},
 
