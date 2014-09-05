@@ -165,9 +165,9 @@ Object.defineProperties(BungieNet.CurrentUser, {
 Object.defineProperties(BungieNet, { Platform: { value: { } } });
 Object.defineProperties(BungieNet.Platform, {
 
-	_Settings: {
+	_Preferences: {
 		value: {
-			RequestTimeout: 5000
+			RequestTimeout: null
 		}
 	},
 
@@ -249,6 +249,18 @@ Object.defineProperties(BungieNet.Platform, {
 			}
 			else{
 				error({ Reason: "JSON parse error" });
+			}
+			
+		}
+	},
+	
+	SetPrefernces: {
+		value: function(options){
+			
+			for(var opt in options){
+				if(opt in BungieNet.Platform._Preferences){
+					BungieNet.Platform._Preferences[opt] = options[opt];
+				}
 			}
 			
 		}
