@@ -20,10 +20,11 @@ Function.NOP = function(){ };
 /**
  * Generates a relative timestamp for this date around the current date
  *
+ * @rough {Boolean} true to modify seconds to "just now" if ~1
  * @example "in 2 hours", "5 days ago", "in 10 years", etc...
  * @returns {String}
  */
-Date.prototype.ToRelativeTimestamp = function(){
+Date.prototype.ToRelativeTimestamp = function(rough){
 	
 	var diff = Date.now() - this.getTime();
 	var isPast = diff >= 0;
@@ -52,7 +53,14 @@ Date.prototype.ToRelativeTimestamp = function(){
 		str += Math.floor(minutes) + " minute" + (Math.floor(minutes) !== 1 ? "s" : "");
 	}
 	else{
-		str += Math.floor(seconds) + " second" + (Math.floor(seconds) !== 1 ? "s" : "");
+		
+		if(seconds < 1 && rough === true){
+			return "just now";
+		}
+		else{
+			str += Math.floor(seconds) + " second" + (Math.floor(seconds) !== 1 ? "s" : "");
+		}
+		
 	}
 	
 	return str + (isPast ? " ago" : "");
