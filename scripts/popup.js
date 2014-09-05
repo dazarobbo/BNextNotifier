@@ -365,16 +365,16 @@ function DisplayConversation(pm, conv){
 						return;
 					}
 					
-					BungieNet.Platform.SendMessage(
-						$(this).prev().find("textarea").first().val(),
-						pm.membersToId.map(function(m){ return m.membershipId; }),
+					BungieNet.Platform.SendMessageByConversationId(
 						function(r){
 							btn.trigger("click");
 							setTimeout(function(){ btn.trigger("click"); }, 200);
 						},
 						function(o){
 							alert("Couldn't send message: " + o.Reason);
-						}
+						},
+						$(this).prev().find("textarea").first().val(),
+						pm.detail.conversationId
 					);
 					
 				}),
