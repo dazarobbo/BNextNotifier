@@ -414,7 +414,7 @@ function DisplayConversation(pm, conv){
 							
 							(function(){
 								var d = new Date(m.dateSent);
-								return $("<time>").attr("title", d.toLocaleString()).text(d.ToRelativeTimestamp());
+								return $("<time>").attr("title", d.toLocaleString()).text(d.ToRelativeTimestamp(true));
 							})()
 					
 						)
@@ -505,7 +505,7 @@ function DisplayMessages(){
 						
 						(function(){
 							var d = new Date(pm.detail.lastMessageSent);
-							return $("<time>").css("font-weight", !pm.detail.isRead ? "bold" : "normal").text(d.ToRelativeTimestamp()).attr("title", d.toLocaleString());
+							return $("<time>").css("font-weight", !pm.detail.isRead ? "bold" : "normal").text(d.ToRelativeTimestamp(true)).attr("title", d.toLocaleString());
 						})(),
 						
 						$("<div>").addClass("conversation")
