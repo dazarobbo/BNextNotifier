@@ -95,13 +95,18 @@ Object.defineProperties(BungieNet.Cookies, {
 	Get: {
 		value: function(name, callback){
 			BungieNet.Cookies.GetAll(function(cookies){
+				
+				var c = null;
+				
 				for(var i = 0, l = cookies.length; i < l; ++i){
 					if(cookies[i].name === name){
-						callback(cookies[i]);
-						return;
+						c = cookies[i];
+						break;
 					}
 				}
-				callback(null);
+				
+				callback(c);
+				
 			});
 		}
 	}
