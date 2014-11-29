@@ -29,6 +29,10 @@ Object.defineProperties(BungieNet, {
 		value: "https"
 	},
 	
+	DefaultLocale: {
+		value: "en"
+	},
+	
 	MakeProfileLink: {
 		value: function(memberId, callback){
 			BungieNet.CurrentUser.GetLocale(function(locale){
@@ -147,7 +151,7 @@ Object.defineProperties(BungieNet.CurrentUser, {
 			BungieNet.Cookies.Get("bunglelocale", function(cookie){
 				
 				if(cookie === null){
-					callback(null);
+					callback(BungieNet.DefaultLocale);
 				}
 				
 				var arr = cookie.value.match(/&?lc=(.{2,}?)(?:$|&)/i);
