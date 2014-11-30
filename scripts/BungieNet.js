@@ -147,6 +147,7 @@ Object.defineProperties(BungieNet.CurrentUser, {
 				
 				if(cookie === null){
 					callback(null);
+					return;
 				}
 				
 				var arr = cookie.value.match(/&?lc=(.+)(?:$|&)/i);
