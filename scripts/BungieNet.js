@@ -192,6 +192,7 @@ Object.defineProperties(BungieNet.Platform, {
 			}
 			
 			var xhr = new XMLHttpRequest();
+			xhr.setRequestHeader("X-API-Key", BungieNet.Platform._PreferenceProxy.ApiKey);
 			xhr.open(method, url, true);
 			xhr.timeout = BungieNet.Platform._PreferenceProxy.NetworkTimeout;
 			xhr.onreadystatechange = function(){
@@ -216,13 +217,13 @@ Object.defineProperties(BungieNet.Platform, {
 					else{
 						xhr.withCredentials = true;
 						xhr.setRequestHeader("x-csrf", token);
-						xhr.send( postStr !== null ? postStr : void(0) );
+						xhr.send(postStr !== null ? postStr : void(0));
 					}
 					
 				});
 			}
 			else{
-				xhr.send( postStr !== null ? postStr : void(0) );
+				xhr.send(postStr !== null ? postStr : void(0));
 			}
 			
 		
