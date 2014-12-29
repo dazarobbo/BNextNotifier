@@ -192,8 +192,8 @@ Object.defineProperties(BungieNet.Platform, {
 			}
 			
 			var xhr = new XMLHttpRequest();
-			xhr.setRequestHeader("X-API-Key", BungieNet.Platform._PreferenceProxy.ApiKey);
 			xhr.open(method, url, true);
+			xhr.setRequestHeader("X-API-Key", BungieNet.Platform._PreferenceProxy.ApiKey);
 			xhr.timeout = BungieNet.Platform._PreferenceProxy.NetworkTimeout;
 			xhr.onreadystatechange = function(){
 				
